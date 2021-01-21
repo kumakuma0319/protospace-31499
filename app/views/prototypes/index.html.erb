@@ -6,6 +6,7 @@
         <%= "こんにちは、" %>
         <%= link_to current_user.name, "/users/#{current_user.id}", class: :greeting__link %>
       </div> 
+      
     <% end %>
     <div class="card__wrapper">
       <%= render partial: 'prototype', collection: @prototypes %>
