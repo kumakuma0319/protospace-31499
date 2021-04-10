@@ -4,11 +4,11 @@ class PrototypesController < ApplicationController
   def index
     @prototypes = Prototype.all
   end
-  
+
   def new
-    @prototype = Prototype.new
+   @prototype = Prototype.new
   end
-  
+
   def create
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
@@ -17,13 +17,13 @@ class PrototypesController < ApplicationController
       render :new
     end
   end
-  
+
   def show
     @prototype = Prototype.find(params[:id])
     @comments = @prototype.comments.includes(:user)
     @comment = Comment.new
   end
-  
+
   def edit
     @prototype = Prototype.find(params[:id])
   end
@@ -33,10 +33,10 @@ class PrototypesController < ApplicationController
     if @prototype.update(prototype_params)
       redirect_to root_path
     else
-      render :@edit
+      render :edit
     end
   end
-  
+
   def destroy
     @prototype = Prototype.find(params[:id])
     @prototype.destroy
@@ -51,7 +51,7 @@ class PrototypesController < ApplicationController
 
   def move_to_index
     @prototype = Prototype.find(params[:id])
-    unless user_signed_in? && current_user.id == @prototype.user_id
+    unless user_signed_in? && current_user.id == @prototype.user_id 
       redirect_to action: :index
     end
   end
